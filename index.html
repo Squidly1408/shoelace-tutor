@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tie My Shoes!</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <meta name="description" content="A friendly, step-by-step shoelace tying tutor for kids.">
+  <meta name="theme-color" content="#ffcf3f">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <button id="homeBtn" class="icon-btn" aria-label="Go home" hidden><span aria-hidden="true">🏠</span></button>
+    <p class="brand"><span aria-hidden="true">👟</span> Tie My Shoes!</p>
+    <button id="starsBtn" class="pill" aria-label="My stickers"><span aria-hidden="true">⭐</span> <span id="starCount">0</span></button>
+    <button id="muteBtn" class="icon-btn" aria-pressed="false" aria-label="Mute voice"><span aria-hidden="true" id="muteIcon">🔊</span></button>
+  </header>
+
+  <main id="main">
+    <!-- HOME -->
+    <section id="home" class="screen" aria-labelledby="homeTitle">
+      <h1 id="homeTitle" class="hello" tabindex="-1">Let's learn to tie our shoes!</h1>
+      <p class="sub">Pick a way to tie. Red lace is for your <b class="red-t">left</b> hand, blue lace is for your <b class="blue-t">right</b> hand.</p>
+      <div class="methods">
+        <article class="method-card bunny">
+          <div class="mc-emoji" aria-hidden="true">🐰</div>
+          <h2>Bunny Ears</h2>
+          <p>Make two loops, then cross and tuck.</p>
+          <p class="mc-stars" data-stars="bunny" aria-live="polite"></p>
+          <div class="mc-actions">
+            <button class="big-btn go" data-learn="bunny"><span aria-hidden="true">▶</span> Learn</button>
+            <button class="big-btn alt" data-practice="bunny"><span aria-hidden="true">✋</span> Practice</button>
+          </div>
+        </article>
+        <article class="method-card loop">
+          <div class="mc-emoji" aria-hidden="true">🌀</div>
+          <h2>Loop, Swoop &amp; Pull</h2>
+          <p>Make one loop, swoop around, pull through.</p>
+          <p class="mc-stars" data-stars="loop" aria-live="polite"></p>
+          <div class="mc-actions">
+            <button class="big-btn go" data-learn="loop"><span aria-hidden="true">▶</span> Learn</button>
+            <button class="big-btn alt" data-practice="loop"><span aria-hidden="true">✋</span> Practice</button>
+          </div>
+        </article>
+      </div>
+      <div class="home-links">
+        <button class="link-btn" data-go="stickers"><span aria-hidden="true">🏅</span> My Stickers</button>
+        <button class="link-btn" data-go="tips"><span aria-hidden="true">👪</span> Tips for Grown-ups</button>
+      </div>
+    </section>
+
+    <!-- LESSON -->
+    <section id="lesson" class="screen" hidden aria-labelledby="lessonTitle">
+      <div class="layout">
+        <div class="stage-card">
+          <svg id="lessonSvg" class="stage" role="img" aria-labelledby="lessonText"></svg>
+          <div class="legend" aria-hidden="true"><span class="chip red">Red = left hand</span><span class="chip blue">Blue = right hand</span></div>
+        </div>
+        <div class="panel">
+          <h1 id="lessonTitle" class="panel-title" tabindex="-1">Bunny Ears</h1>
+          <ol class="dots" id="lessonDots" aria-hidden="true"></ol>
+          <p class="step-count" id="lessonCount">Step 1 of 9</p>
+          <p class="instruction" id="lessonText" aria-live="polite"></p>
+          <div class="controls">
+            <button id="backBtn" class="ctl back" aria-label="Back one step"><span class="ico" aria-hidden="true">◀</span><span>Back</span></button>
+            <button id="replayBtn" class="ctl replay" aria-label="Replay this step"><span class="ico" aria-hidden="true">↻</span><span>Again</span></button>
+            <button id="nextBtn" class="ctl next" aria-label="Next step"><span class="ico" aria-hidden="true">▶</span><span id="nextLabel">Next</span></button>
+          </div>
+          <div class="rhyme-card">
+            <h2><span aria-hidden="true">🎵</span> Rhyme time</h2>
+            <p id="lessonRhyme" class="rhyme"></p>
+            <button id="rhymeBtn" class="small-btn"><span aria-hidden="true">🔊</span> Say the rhyme</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRACTICE -->
+    <section id="practice" class="screen" hidden aria-labelledby="practiceTitle">
+      <div class="layout">
+        <div class="stage-card">
+          <svg id="practiceSvg" class="stage practice-stage" role="application" aria-label="Practice shoe. Use Tab to find the glowing lace, then press Enter to move it."></svg>
+          <div class="legend" aria-hidden="true"><span class="chip red">Red = left hand</span><span class="chip blue">Blue = right hand</span></div>
+        </div>
+        <div class="panel">
+          <h1 id="practiceTitle" class="panel-title" tabindex="-1">Practice</h1>
+          <ol class="dots" id="practiceDots" aria-hidden="true"></ol>
+          <p class="instruction" id="practiceText"></p>
+          <p class="feedback" id="practiceFeedback" role="status" aria-live="polite"></p>
+          <div class="controls two">
+            <button id="hintBtn" class="ctl replay"><span class="ico" aria-hidden="true">💡</span><span>Show me</span></button>
+            <button id="restartBtn" class="ctl back"><span class="ico" aria-hidden="true">↺</span><span>Start over</span></button>
+          </div>
+          <p class="how">Drag the <b>glowing</b> lace end to the <b>star</b>. You can also tap the lace, then tap the star.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STICKERS -->
+    <section id="stickers" class="screen" hidden aria-labelledby="stickersTitle">
+      <h1 id="stickersTitle" class="hello" tabindex="-1">My Sticker Book</h1>
+      <p class="sub" id="starSummary"></p>
+      <ul class="sticker-grid" id="stickerGrid"></ul>
+      <button id="resetBtn" class="link-btn quiet">Grown-ups: clear stickers</button>
+    </section>
+
+    <!-- TIPS -->
+    <section id="tips" class="screen" hidden aria-labelledby="tipsTitle">
+      <h1 id="tipsTitle" class="hello" tabindex="-1">Tips for Grown-ups</h1>
+      <div class="tips-card">
+        <ul class="tips">
+          <li><b>Pick a calm moment.</b> Practise when nobody is rushing out of the door.</li>
+          <li><b>Start on the table.</b> A shoe on a table (toe pointing away) is easier than one on a foot. Move to their own foot once it clicks.</li>
+          <li><b>Sit beside, not opposite.</b> Seen from the front, everything is mirrored. Sit next to or behind your child so you share the same view.</li>
+          <li><b>Two colours help.</b> Colour half of one lace with a permanent marker, or tie two different laces together, so "left" and "right" are easy to name.</li>
+          <li><b>Choose easy laces.</b> Longer, flat, cotton laces grip better than short, round, slippery ones.</li>
+          <li><b>Do the last step first.</b> Tie everything yourself and let them do the final pull. Then hand over one more step each time (backward chaining).</li>
+          <li><b>Use the rhyme.</b> Saying the words out loud helps children remember the order.</li>
+          <li><b>Praise trying.</b> Most children master this between ages 5 and 7, and it can take weeks. Wobbly bows still count!</li>
+        </ul>
+        <p class="tips-note">This app needs no account and sends nothing anywhere. Stickers are saved only in this browser. The voice uses your device's built-in speech, and you can mute it with the speaker button.</p>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="celebrate" aria-labelledby="celTitle">
+    <div class="cel-sticker" id="celSticker" aria-hidden="true">⭐</div>
+    <h2 id="celTitle">You did it!</h2>
+    <p id="celText">You earned a star!</p>
+    <p class="rhyme small" id="celRhyme"></p>
+    <div class="cel-actions">
+      <button class="big-btn alt" id="celRhymeBtn"><span aria-hidden="true">🎵</span> Rhyme</button>
+      <button class="big-btn go" id="celAgainBtn"><span aria-hidden="true">↺</span> Again</button>
+      <button class="big-btn home" id="celHomeBtn"><span aria-hidden="true">🏠</span> Home</button>
+    </div>
+  </dialog>
+
+  <div id="confetti" aria-hidden="true"></div>
+  <script src="app.js"></script>
+</body>
+</html>
